@@ -88,6 +88,7 @@
 
 .navbar__buttons__register:hover {
     box-shadow: 0 10px 15px 0 #97fc92;
+    cursor: pointer;
 }
 
 

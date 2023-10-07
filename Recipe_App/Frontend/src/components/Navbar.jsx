@@ -1,8 +1,17 @@
 import React from 'react'
-import './Navbar.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
 
 const Navbar = () => {
+    const [cookies, setCookies] = useCookies(["access_token"]);
+    const navigate = useNavigate();
+
+    const Onlogout = () => {
+        setCookies("access_token", "");
+        window.localStorage.removeItem("userID");
+        navigate("/auth")
+    }
+
     return (
         <section id='navbar'>
             <div className="navbar">
@@ -25,14 +34,19 @@ const Navbar = () => {
                         </Link>
                     </li>
                 </ul>
-                <div className="navbar__buttons">
-                    <Link className="navbar__buttons__sign-in" to="/auth">
-                        Login
-                    </Link>
-                    <Link className="navbar__buttons__register" to="/auth">
-                        Register
-                    </Link>
-                </div>
+                {!cookies.access_token ? (
+                    <div className="navbar__buttons">
+                        <Link className="navbar__buttons__sign-in" to="/auth">
+                            Login
+                        </Link>
+                        <Link className="navbar__buttons__register" to="/auth">
+                            Register
+                        </Link>
+                    </div>
+                ) : (
+                    <button className='navbar__buttons navbar__buttons__register' onClick={Onlogout}>Logout</button>
+                )}
+
             </div>
         </section>
     )
