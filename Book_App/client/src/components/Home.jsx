@@ -8,8 +8,8 @@ const Home = () => {
         const fetchBookData = async () => {
             try {
                 const result = await axios.get("http://localhost:3001/books");
-                setBookData(result);
-                console.log(result);
+                setBookData(result.data);
+                console.log(result.data);
             }
             catch (err) {
                 console.error(err);
