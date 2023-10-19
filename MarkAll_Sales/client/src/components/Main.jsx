@@ -15,11 +15,11 @@ const Main = () => {
                         <div className="main-subheader white">Get your customers with SEO, rank your business with email marketing, build sales leads</div>
                         <div className="main-buttons">
                             <div className="get-started "><Link to='#'>Get Started</Link></div>
-                            <div className="watch-demo white"><Link to='#'>Watch Demo <i class="fa-light fa-triangle fa-rotate-90"></i></Link></div>
+                            <div className="watch-demo white"><Link to='#'> Watch Demo <i class="fa-solid fa-caret-right"></i></Link></div>
                         </div>
                     </div>
                     <div className="main-img">
-                        <div className="img-border-back"></div>
+                        <div className="img-border-back overlay"></div>
                         <div className="img-container"><img src={Main_Img} alt="" /></div>
                     </div>
                 </div>
