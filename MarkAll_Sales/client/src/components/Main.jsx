@@ -15,7 +15,7 @@ const Main = () => {
                         <div className="main-subheader white">Get your customers with SEO, rank your business with email marketing, build sales leads</div>
                         <div className="main-buttons">
                             <div className="get-started "><Link to='#'>Get Started</Link></div>
-                            <div className="watch-demo white"><Link to='#'> Watch Demo <i class="fa-solid fa-caret-right"></i></Link></div>
+                            <div className="watch-demo white"><Link to='#'> Watch Demo <i className="fa-solid fa-caret-right"></i></Link></div>
                         </div>
                     </div>
                     <div className="main-img">

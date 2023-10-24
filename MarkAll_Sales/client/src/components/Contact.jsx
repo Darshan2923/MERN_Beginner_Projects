@@ -1,6 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 const Contact = () => {
+    const [contacts, setContacts] = useState({
+        name: "",
+        email: "",
+        phoneNumber: 0,
+    })
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setContacts(prevState => ({ ...prevState, [name]: value }))
+    }
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await axios.post("http://localhost:3000/createblog", contacts);
+            alert("Contact info sent successfully");
+        } catch (error) {
+            console.log(error);
+        }
+    }
     return (
         <section className='contact'>
             <div className="contact-container">
@@ -13,13 +32,13 @@ const Contact = () => {
                     <div className="content2">
                         <h2>Contact Now</h2>
                         <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Officia a voluptatum nostrum quod quia aspernatur!</p>
-                        <form>
+                        <form onSubmit={onSubmit}>
                             <label htmlFor="name">Name*</label>
-                            <input type="text" name='name' placeholder='Enter your name' />
+                            <input type="text" name='name' placeholder='Enter your name' onChange={handleChange} />
                             <label htmlFor="email">Email*</label>
-                            <input type="email" name='email' placeholder='Enter your email' />
+                            <input type="email" name='email' placeholder='Enter your email' onChange={handleChange} />
                             <label htmlFor="phone">Phone*</label>
-                            <input type="number" name='phone' placeholder='Enter your phone number' />
+                            <input type="number" name='phone' placeholder='Enter your phone number' onChange={handleChange} />
                             <button type='submit'>Submit</button>
                         </form>
                     </div>
