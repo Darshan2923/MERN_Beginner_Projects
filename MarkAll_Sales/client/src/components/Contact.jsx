@@ -14,7 +14,7 @@ const Contact = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:3000/createblog", contacts);
+            await axios.post("http://localhost:3000/createcontact", contacts);
             alert("Contact info sent successfully");
         } catch (error) {
             console.log(error);
