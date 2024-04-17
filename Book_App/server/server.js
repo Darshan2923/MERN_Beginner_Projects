@@ -1,12 +1,14 @@
 import express from 'express';
 import mongoose from 'mongoose';
 import cors from 'cors';
+import bodyParser from 'body-parser
 import { bookRoutes } from './routes/BookRoutes.js';
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use(bodyParser());
 
 app.use("/books", bookRoutes);
 
