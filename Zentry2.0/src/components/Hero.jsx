@@ -26,7 +26,7 @@ const Hero = () => {
 
     return (
         <div className='relative h-dvh w-screen overflow-x-hidden'>
-
+            
         </div>
     )
 }
