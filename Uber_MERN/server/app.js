@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import connectToDb from './db/db.js';
 import userRoutes from './routes/user.routes.js';
+import captainRoutes from './routes/captain.routes.js';
 import cookieParser from 'cookie-parser';
 
 // Initialize Express
@@ -22,5 +23,6 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api/users', userRoutes);
+app.use('/api/captains', captainRoutes);
 
 export default app;
