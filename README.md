@@ -6,7 +6,7 @@ The MERN stack includes:
 - **MongoDB**: A NoSQL database for storing data.
 - **Express.js**: A backend framework for building RESTful APIs.
 - **React**: A frontend library for creating interactive user interfaces.
-- **Node.js**: A runtime environment for running JavaScript on the server.
+- **Node.js**: A runtime environment for running JavaScript on the server. 
 
 ---
 
