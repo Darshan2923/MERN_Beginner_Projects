@@ -21,6 +21,8 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+        working-directory: GitHubActions
 
       - name: Run tests
         run: node test.js
+        working-directory: GitHubActions
