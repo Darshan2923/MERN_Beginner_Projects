@@ -260,7 +260,8 @@
 <a name='L195'></a><a href='#L195'>195</a>
 <a name='L196'></a><a href='#L196'>196</a>
 <a name='L197'></a><a href='#L197'>197</a>
-<a name='L198'></a><a href='#L198'>198</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -457,211 +458,213 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '#config/logger.js';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '#config/logger.js';
 import {
-    getAllUsers,
-    getUserById,
-    updateUser,
-    deleteUser,
+  getAllUsers,
+  getUserById,
+  updateUser,
+  deleteUser,
 } from '#services/users.service.js';
 import {
-    userIdSchema,
-    updateUserSchema,
+  userIdSchema,
+  updateUserSchema,
 } from '#validations/users.validation.js';
 import { formatValidationError } from '#utils/format.js';
 &nbsp;
 export const fetchAllUsers = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        logger.info('Getting users...');</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    logger.info('Getting users...');</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const allUsers = await getAllUsers();</span>
+<span class="cstat-no" title="statement not covered" >    const allUsers = await getAllUsers();</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        res.json({</span>
-<span class="cstat-no" title="statement not covered" >            message: 'Successfully retrieved users',</span>
-<span class="cstat-no" title="statement not covered" >            users: allUsers,</span>
-<span class="cstat-no" title="statement not covered" >            count: allUsers.length,</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(e);</span>
-<span class="cstat-no" title="statement not covered" >        next(e);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >    res.json({</span>
+<span class="cstat-no" title="statement not covered" >      message: 'Successfully retrieved users',</span>
+<span class="cstat-no" title="statement not covered" >      users: allUsers,</span>
+<span class="cstat-no" title="statement not covered" >      count: allUsers.length,</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(e);</span>
+<span class="cstat-no" title="statement not covered" >    next(e);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const fetchUserById = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`Getting user by id: ${req.params.id}`);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`Getting user by id: ${req.params.id}`);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Validate the user ID parameter</span>
-<span class="cstat-no" title="statement not covered" >        const validationResult = userIdSchema.safeParse({ id: req.params.id });</span>
+<span class="cstat-no" title="statement not covered" >    // Validate the user ID parameter</span>
+<span class="cstat-no" title="statement not covered" >    const validationResult = userIdSchema.safeParse({ id: req.params.id });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!validationResult.success) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >                details: formatValidationError(validationResult.error),</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const { id } = validationResult.data;</span>
-<span class="cstat-no" title="statement not covered" >        const user = await getUserById(id);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`User ${user.email} retrieved successfully`);</span>
-<span class="cstat-no" title="statement not covered" >        res.json({</span>
-<span class="cstat-no" title="statement not covered" >            message: 'User retrieved successfully',</span>
-<span class="cstat-no" title="statement not covered" >            user,</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error fetching user by id: ${e.message}`);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (e.message === 'User not found') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(404).json({ error: 'User not found' });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        next(e);</span>
+<span class="cstat-no" title="statement not covered" >    if (!validationResult.success) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error),</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const { id } = validationResult.data;</span>
+<span class="cstat-no" title="statement not covered" >    const user = await getUserById(id);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`User ${user.email} retrieved successfully`);</span>
+<span class="cstat-no" title="statement not covered" >    res.json({</span>
+<span class="cstat-no" title="statement not covered" >      message: 'User retrieved successfully',</span>
+<span class="cstat-no" title="statement not covered" >      user,</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error fetching user by id: ${e.message}`);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (e.message === 'User not found') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: 'User not found' });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    next(e);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const updateUserById = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`Updating user: ${req.params.id}`);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`Updating user: ${req.params.id}`);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Validate the user ID parameter</span>
-<span class="cstat-no" title="statement not covered" >        const idValidationResult = userIdSchema.safeParse({ id: req.params.id });</span>
+<span class="cstat-no" title="statement not covered" >    // Validate the user ID parameter</span>
+<span class="cstat-no" title="statement not covered" >    const idValidationResult = userIdSchema.safeParse({ id: req.params.id });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!idValidationResult.success) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >                details: formatValidationError(idValidationResult.error),</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Validate the update data</span>
-<span class="cstat-no" title="statement not covered" >        const updateValidationResult = updateUserSchema.safeParse(req.body);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!updateValidationResult.success) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >                details: formatValidationError(updateValidationResult.error),</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const { id } = idValidationResult.data;</span>
-<span class="cstat-no" title="statement not covered" >        const updates = updateValidationResult.data;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Authorization checks</span>
-<span class="cstat-no" title="statement not covered" >        if (!req.user) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(401).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Authentication required',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'You must be logged in to update user information',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Allow users to update only their own information (except role)</span>
-<span class="cstat-no" title="statement not covered" >        if (req.user.role !== 'admin' &amp;&amp; req.user.id !== id) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(403).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'You can only update your own information',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Only admin users can change roles</span>
-<span class="cstat-no" title="statement not covered" >        if (updates.role &amp;&amp; req.user.role !== 'admin') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(403).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'Only administrators can change user roles',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Remove role from updates if non-admin user is trying to update their own profile</span>
-<span class="cstat-no" title="statement not covered" >        if (req.user.role !== 'admin') {</span>
-<span class="cstat-no" title="statement not covered" >            delete updates.role;</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const updatedUser = await updateUser(id, updates);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`User ${updatedUser.email} updated successfully`);</span>
-<span class="cstat-no" title="statement not covered" >        res.json({</span>
-<span class="cstat-no" title="statement not covered" >            message: 'User updated successfully',</span>
-<span class="cstat-no" title="statement not covered" >            user: updatedUser,</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error updating user: ${e.message}`);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (e.message === 'User not found') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(404).json({ error: 'User not found' });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (e.message === 'Email already exists') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(409).json({ error: 'Email already exists' });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        next(e);</span>
+<span class="cstat-no" title="statement not covered" >    if (!idValidationResult.success) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(idValidationResult.error),</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Validate the update data</span>
+<span class="cstat-no" title="statement not covered" >    const updateValidationResult = updateUserSchema.safeParse(req.body);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (!updateValidationResult.success) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(updateValidationResult.error),</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const { id } = idValidationResult.data;</span>
+<span class="cstat-no" title="statement not covered" >    const updates = updateValidationResult.data;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Authorization checks</span>
+<span class="cstat-no" title="statement not covered" >    if (!req.user) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(401).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Authentication required',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to update user information',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Allow users to update only their own information (except role)</span>
+<span class="cstat-no" title="statement not covered" >    if (req.user.role !== 'admin' &amp;&amp; req.user.id !== id) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You can only update your own information',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Only admin users can change roles</span>
+<span class="cstat-no" title="statement not covered" >    if (updates.role &amp;&amp; req.user.role !== 'admin') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can change user roles',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Remove role from updates if non-admin user is trying to update their own profile</span>
+<span class="cstat-no" title="statement not covered" >    if (req.user.role !== 'admin') {</span>
+<span class="cstat-no" title="statement not covered" >      delete updates.role;</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const updatedUser = await updateUser(id, updates);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`User ${updatedUser.email} updated successfully`);</span>
+<span class="cstat-no" title="statement not covered" >    res.json({</span>
+<span class="cstat-no" title="statement not covered" >      message: 'User updated successfully',</span>
+<span class="cstat-no" title="statement not covered" >      user: updatedUser,</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error updating user: ${e.message}`);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (e.message === 'User not found') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: 'User not found' });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (e.message === 'Email already exists') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(409).json({ error: 'Email already exists' });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    next(e);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const deleteUserById = <span class="fstat-no" title="function not covered" >async (req, res, next) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`Deleting user: ${req.params.id}`);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`Deleting user: ${req.params.id}`);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Validate the user ID parameter</span>
-<span class="cstat-no" title="statement not covered" >        const validationResult = userIdSchema.safeParse({ id: req.params.id });</span>
+<span class="cstat-no" title="statement not covered" >    // Validate the user ID parameter</span>
+<span class="cstat-no" title="statement not covered" >    const validationResult = userIdSchema.safeParse({ id: req.params.id });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!validationResult.success) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(400).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Validation failed',</span>
-<span class="cstat-no" title="statement not covered" >                details: formatValidationError(validationResult.error),</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const { id } = validationResult.data;</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Authorization checks</span>
-<span class="cstat-no" title="statement not covered" >        if (!req.user) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(401).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Authentication required',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'You must be logged in to delete users',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Only admin users can delete users (prevent self-deletion or user deletion by non-admins)</span>
-<span class="cstat-no" title="statement not covered" >        if (req.user.role !== 'admin') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(403).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Access denied',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'Only administrators can delete users',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Prevent admins from deleting themselves</span>
-<span class="cstat-no" title="statement not covered" >        if (req.user.id === id) {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(403).json({</span>
-<span class="cstat-no" title="statement not covered" >                error: 'Operation denied',</span>
-<span class="cstat-no" title="statement not covered" >                message: 'You cannot delete your own account',</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const deletedUser = await deleteUser(id);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`User ${deletedUser.email} deleted successfully`);</span>
-<span class="cstat-no" title="statement not covered" >        res.json({</span>
-<span class="cstat-no" title="statement not covered" >            message: 'User deleted successfully',</span>
-<span class="cstat-no" title="statement not covered" >            user: deletedUser,</span>
-<span class="cstat-no" title="statement not covered" >        });</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error deleting user: ${e.message}`);</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (e.message === 'User not found') {</span>
-<span class="cstat-no" title="statement not covered" >            return res.status(404).json({ error: 'User not found' });</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        next(e);</span>
+<span class="cstat-no" title="statement not covered" >    if (!validationResult.success) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Validation failed',</span>
+<span class="cstat-no" title="statement not covered" >        details: formatValidationError(validationResult.error),</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >};</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const { id } = validationResult.data;</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Authorization checks</span>
+<span class="cstat-no" title="statement not covered" >    if (!req.user) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(401).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Authentication required',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You must be logged in to delete users',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Only admin users can delete users (prevent self-deletion or user deletion by non-admins)</span>
+<span class="cstat-no" title="statement not covered" >    if (req.user.role !== 'admin') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Access denied',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'Only administrators can delete users',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Prevent admins from deleting themselves</span>
+<span class="cstat-no" title="statement not covered" >    if (req.user.id === id) {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(403).json({</span>
+<span class="cstat-no" title="statement not covered" >        error: 'Operation denied',</span>
+<span class="cstat-no" title="statement not covered" >        message: 'You cannot delete your own account',</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const deletedUser = await deleteUser(id);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`User ${deletedUser.email} deleted successfully`);</span>
+<span class="cstat-no" title="statement not covered" >    res.json({</span>
+<span class="cstat-no" title="statement not covered" >      message: 'User deleted successfully',</span>
+<span class="cstat-no" title="statement not covered" >      user: deletedUser,</span>
+<span class="cstat-no" title="statement not covered" >    });</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error deleting user: ${e.message}`);</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    if (e.message === 'User not found') {</span>
+<span class="cstat-no" title="statement not covered" >      return res.status(404).json({ error: 'User not found' });</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    next(e);</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-14T06:54:03.078Z
+                at 2025-09-14T07:31:42.118Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

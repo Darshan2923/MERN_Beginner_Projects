@@ -177,7 +177,8 @@
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
-<a name='L115'></a><a href='#L115'>115</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -291,128 +292,130 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '#config/logger.js';
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import logger from '#config/logger.js';
 import { db } from '#config/database.js';
 import { users } from '#models/user.model.js';
 import { eq } from 'drizzle-orm';
 &nbsp;
 export const getAllUsers = <span class="fstat-no" title="function not covered" >async () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        return await db</span>
-<span class="cstat-no" title="statement not covered" >            .select({</span>
-<span class="cstat-no" title="statement not covered" >                id: users.id,</span>
-<span class="cstat-no" title="statement not covered" >                email: users.email,</span>
-<span class="cstat-no" title="statement not covered" >                name: users.name,</span>
-<span class="cstat-no" title="statement not covered" >                role: users.role,</span>
-<span class="cstat-no" title="statement not covered" >                created_at: users.created_at,</span>
-<span class="cstat-no" title="statement not covered" >                updated_at: users.updated_at,</span>
-<span class="cstat-no" title="statement not covered" >            })</span>
-<span class="cstat-no" title="statement not covered" >            .from(users);</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error('Error getting users', e);</span>
-<span class="cstat-no" title="statement not covered" >        throw e;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    return await db</span>
+<span class="cstat-no" title="statement not covered" >      .select({</span>
+<span class="cstat-no" title="statement not covered" >        id: users.id,</span>
+<span class="cstat-no" title="statement not covered" >        email: users.email,</span>
+<span class="cstat-no" title="statement not covered" >        name: users.name,</span>
+<span class="cstat-no" title="statement not covered" >        role: users.role,</span>
+<span class="cstat-no" title="statement not covered" >        created_at: users.created_at,</span>
+<span class="cstat-no" title="statement not covered" >        updated_at: users.updated_at,</span>
+<span class="cstat-no" title="statement not covered" >      })</span>
+<span class="cstat-no" title="statement not covered" >      .from(users);</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error('Error getting users', e);</span>
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const getUserById = <span class="fstat-no" title="function not covered" >async id =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        const [user] = await db</span>
-<span class="cstat-no" title="statement not covered" >            .select({</span>
-<span class="cstat-no" title="statement not covered" >                id: users.id,</span>
-<span class="cstat-no" title="statement not covered" >                email: users.email,</span>
-<span class="cstat-no" title="statement not covered" >                name: users.name,</span>
-<span class="cstat-no" title="statement not covered" >                role: users.role,</span>
-<span class="cstat-no" title="statement not covered" >                created_at: users.created_at,</span>
-<span class="cstat-no" title="statement not covered" >                updated_at: users.updated_at,</span>
-<span class="cstat-no" title="statement not covered" >            })</span>
-<span class="cstat-no" title="statement not covered" >            .from(users)</span>
-<span class="cstat-no" title="statement not covered" >            .where(eq(users.id, id))</span>
-<span class="cstat-no" title="statement not covered" >            .limit(1);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    const [user] = await db</span>
+<span class="cstat-no" title="statement not covered" >      .select({</span>
+<span class="cstat-no" title="statement not covered" >        id: users.id,</span>
+<span class="cstat-no" title="statement not covered" >        email: users.email,</span>
+<span class="cstat-no" title="statement not covered" >        name: users.name,</span>
+<span class="cstat-no" title="statement not covered" >        role: users.role,</span>
+<span class="cstat-no" title="statement not covered" >        created_at: users.created_at,</span>
+<span class="cstat-no" title="statement not covered" >        updated_at: users.updated_at,</span>
+<span class="cstat-no" title="statement not covered" >      })</span>
+<span class="cstat-no" title="statement not covered" >      .from(users)</span>
+<span class="cstat-no" title="statement not covered" >      .where(eq(users.id, id))</span>
+<span class="cstat-no" title="statement not covered" >      .limit(1);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        if (!user) {</span>
-<span class="cstat-no" title="statement not covered" >            throw new Error('User not found');</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        return user;</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error getting user by id ${id}:`, e);</span>
-<span class="cstat-no" title="statement not covered" >        throw e;</span>
+<span class="cstat-no" title="statement not covered" >    if (!user) {</span>
+<span class="cstat-no" title="statement not covered" >      throw new Error('User not found');</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    return user;</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error getting user by id ${id}:`, e);</span>
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const updateUser = <span class="fstat-no" title="function not covered" >async (id, updates) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        // First check if user exists</span>
-<span class="cstat-no" title="statement not covered" >        const existingUser = await getUserById(id);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    // First check if user exists</span>
+<span class="cstat-no" title="statement not covered" >    const existingUser = await getUserById(id);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Check if email is being updated and if it already exists</span>
-<span class="cstat-no" title="statement not covered" >        if (updates.email &amp;&amp; updates.email !== existingUser.email) {</span>
-<span class="cstat-no" title="statement not covered" >            const [emailExists] = await db</span>
-<span class="cstat-no" title="statement not covered" >                .select()</span>
-<span class="cstat-no" title="statement not covered" >                .from(users)</span>
-<span class="cstat-no" title="statement not covered" >                .where(eq(users.email, updates.email))</span>
-<span class="cstat-no" title="statement not covered" >                .limit(1);</span>
-<span class="cstat-no" title="statement not covered" >            if (emailExists) {</span>
-<span class="cstat-no" title="statement not covered" >                throw new Error('Email already exists');</span>
-<span class="cstat-no" title="statement not covered" >            }</span>
-<span class="cstat-no" title="statement not covered" >        }</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        // Add updated_at timestamp</span>
-<span class="cstat-no" title="statement not covered" >        const updateData = {</span>
-<span class="cstat-no" title="statement not covered" >            ...updates,</span>
-<span class="cstat-no" title="statement not covered" >            updated_at: new Date(),</span>
-<span class="cstat-no" title="statement not covered" >        };</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const [updatedUser] = await db</span>
-<span class="cstat-no" title="statement not covered" >            .update(users)</span>
-<span class="cstat-no" title="statement not covered" >            .set(updateData)</span>
-<span class="cstat-no" title="statement not covered" >            .where(eq(users.id, id))</span>
-<span class="cstat-no" title="statement not covered" >            .returning({</span>
-<span class="cstat-no" title="statement not covered" >                id: users.id,</span>
-<span class="cstat-no" title="statement not covered" >                email: users.email,</span>
-<span class="cstat-no" title="statement not covered" >                name: users.name,</span>
-<span class="cstat-no" title="statement not covered" >                role: users.role,</span>
-<span class="cstat-no" title="statement not covered" >                created_at: users.created_at,</span>
-<span class="cstat-no" title="statement not covered" >                updated_at: users.updated_at,</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
-<span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`User ${updatedUser.email} updated successfully`);</span>
-<span class="cstat-no" title="statement not covered" >        return updatedUser;</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error updating user ${id}:`, e);</span>
-<span class="cstat-no" title="statement not covered" >        throw e;</span>
+<span class="cstat-no" title="statement not covered" >    // Check if email is being updated and if it already exists</span>
+<span class="cstat-no" title="statement not covered" >    if (updates.email &amp;&amp; updates.email !== existingUser.email) {</span>
+<span class="cstat-no" title="statement not covered" >      const [emailExists] = await db</span>
+<span class="cstat-no" title="statement not covered" >        .select()</span>
+<span class="cstat-no" title="statement not covered" >        .from(users)</span>
+<span class="cstat-no" title="statement not covered" >        .where(eq(users.email, updates.email))</span>
+<span class="cstat-no" title="statement not covered" >        .limit(1);</span>
+<span class="cstat-no" title="statement not covered" >      if (emailExists) {</span>
+<span class="cstat-no" title="statement not covered" >        throw new Error('Email already exists');</span>
+<span class="cstat-no" title="statement not covered" >      }</span>
 <span class="cstat-no" title="statement not covered" >    }</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    // Add updated_at timestamp</span>
+<span class="cstat-no" title="statement not covered" >    const updateData = {</span>
+<span class="cstat-no" title="statement not covered" >      ...updates,</span>
+<span class="cstat-no" title="statement not covered" >      updated_at: new Date(),</span>
+<span class="cstat-no" title="statement not covered" >    };</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    const [updatedUser] = await db</span>
+<span class="cstat-no" title="statement not covered" >      .update(users)</span>
+<span class="cstat-no" title="statement not covered" >      .set(updateData)</span>
+<span class="cstat-no" title="statement not covered" >      .where(eq(users.id, id))</span>
+<span class="cstat-no" title="statement not covered" >      .returning({</span>
+<span class="cstat-no" title="statement not covered" >        id: users.id,</span>
+<span class="cstat-no" title="statement not covered" >        email: users.email,</span>
+<span class="cstat-no" title="statement not covered" >        name: users.name,</span>
+<span class="cstat-no" title="statement not covered" >        role: users.role,</span>
+<span class="cstat-no" title="statement not covered" >        created_at: users.created_at,</span>
+<span class="cstat-no" title="statement not covered" >        updated_at: users.updated_at,</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
+<span class="cstat-no" title="statement not covered" ></span>
+<span class="cstat-no" title="statement not covered" >    logger.info(`User ${updatedUser.email} updated successfully`);</span>
+<span class="cstat-no" title="statement not covered" >    return updatedUser;</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error updating user ${id}:`, e);</span>
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >};</span>
 &nbsp;
 export const deleteUser = <span class="fstat-no" title="function not covered" >async id =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >        // First check if user exists</span>
-<span class="cstat-no" title="statement not covered" >        await getUserById(id);</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    // First check if user exists</span>
+<span class="cstat-no" title="statement not covered" >    await getUserById(id);</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        const [deletedUser] = await db</span>
-<span class="cstat-no" title="statement not covered" >            .delete(users)</span>
-<span class="cstat-no" title="statement not covered" >            .where(eq(users.id, id))</span>
-<span class="cstat-no" title="statement not covered" >            .returning({</span>
-<span class="cstat-no" title="statement not covered" >                id: users.id,</span>
-<span class="cstat-no" title="statement not covered" >                email: users.email,</span>
-<span class="cstat-no" title="statement not covered" >                name: users.name,</span>
-<span class="cstat-no" title="statement not covered" >                role: users.role,</span>
-<span class="cstat-no" title="statement not covered" >            });</span>
+<span class="cstat-no" title="statement not covered" >    const [deletedUser] = await db</span>
+<span class="cstat-no" title="statement not covered" >      .delete(users)</span>
+<span class="cstat-no" title="statement not covered" >      .where(eq(users.id, id))</span>
+<span class="cstat-no" title="statement not covered" >      .returning({</span>
+<span class="cstat-no" title="statement not covered" >        id: users.id,</span>
+<span class="cstat-no" title="statement not covered" >        email: users.email,</span>
+<span class="cstat-no" title="statement not covered" >        name: users.name,</span>
+<span class="cstat-no" title="statement not covered" >        role: users.role,</span>
+<span class="cstat-no" title="statement not covered" >      });</span>
 <span class="cstat-no" title="statement not covered" ></span>
-<span class="cstat-no" title="statement not covered" >        logger.info(`User ${deletedUser.email} deleted successfully`);</span>
-<span class="cstat-no" title="statement not covered" >        return deletedUser;</span>
-<span class="cstat-no" title="statement not covered" >    } catch (e) {</span>
-<span class="cstat-no" title="statement not covered" >        logger.error(`Error deleting user ${id}:`, e);</span>
-<span class="cstat-no" title="statement not covered" >        throw e;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >};</span></pre></td></tr></table></pre>
+<span class="cstat-no" title="statement not covered" >    logger.info(`User ${deletedUser.email} deleted successfully`);</span>
+<span class="cstat-no" title="statement not covered" >    return deletedUser;</span>
+<span class="cstat-no" title="statement not covered" >  } catch (e) {</span>
+<span class="cstat-no" title="statement not covered" >    logger.error(`Error deleting user ${id}:`, e);</span>
+<span class="cstat-no" title="statement not covered" >    throw e;</span>
+<span class="cstat-no" title="statement not covered" >  }</span>
+<span class="cstat-no" title="statement not covered" >};</span>
+&nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-09-14T06:54:03.078Z
+                at 2025-09-14T07:31:42.118Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

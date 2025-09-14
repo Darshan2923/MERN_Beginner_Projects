@@ -290,3 +290,6 @@
 {"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:06:54:02 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-infinity-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:06:54:02 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-infinity-api"}
 {"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:06:54:02 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-infinity-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:07:31:41 +0000] \"GET /health HTTP/1.1\" 200 73 \"-\" \"-\"","service":"acquisitions-infinity-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:07:31:41 +0000] \"GET /api HTTP/1.1\" 200 42 \"-\" \"-\"","service":"acquisitions-infinity-api"}
+{"level":"info","message":"::ffff:127.0.0.1 - - [14/Sep/2025:07:31:41 +0000] \"GET /nonexsistent HTTP/1.1\" 404 27 \"-\" \"-\"","service":"acquisitions-infinity-api"}
